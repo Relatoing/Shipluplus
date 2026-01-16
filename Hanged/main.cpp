@@ -18,11 +18,14 @@ int main(){
     int tries;
     std::string guess = "";
     char Guess;
-    std::string answers[5] = {"Banana", "Mango", "Pineapple", "Dragonfruit", "Apple"};
+    std::string answers[12] = {"Banana", "Mango", "Pineapple", "Dragonfruit", "Apple", "JuiceMelon", "MangoJuice", "Pie", "Dog", "Personnal", "Bell", "Hot"};
     std::srand(std::time(NULL));
-    int random = std::rand() % 5;
+    int random = std::rand() % 12;
     std::string ans = {answers[random]};
-    tries = (ans.length() / 2);
+    tries = (ans.length() / 2) + 2;
+    if(tries < 4){
+        tries = 4;
+    }
     std::string guessed(ans.length(), '_');
     
     int choice = 0;
