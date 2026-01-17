@@ -62,22 +62,23 @@ int main(){
         
         clean();
         countL = 0; //Count Line
-        countR = 0;
+        
         for(int i = 0;i < ans.length();i++){
             if(!choice){ //if word
                 if(guess[i] == ans[i] || std::toupper(guess[i]) == ans[i]){
                     guessed[i] = guess[i];
                     countR++;
                 }else{
+                    countR = 0;
                     tries = 0;
                     break;
                 }
-                
+            
             }else{ //if char
-                if(Guess == ans[i]){
+                if(Guess == ans[i] && guessed[i] == '_'){
                     guessed[i] = Guess;
                     countR++;
-                }else if(ans[i] == Guess - 32){
+                }else if(ans[i] == Guess - 32 && guessed[i] == '_'){
                     guessed[i] = Guess - 32;
                     countR++;
                 }
@@ -90,17 +91,17 @@ int main(){
             std::cout << "Errou! Menos uma tentativa!\n";
             --tries;
         }
-        if(countL == 0){
+        if(countL == 0 && countR == ans.length()){
             win = true;
         }else if(win == false && tries > 0){
-            std::cout<< "Sua palavra: \n" << guessed << "\n\nApenas " << tries << " tentativas restantes\n\n";
+            std::cout<< "Sua palavra: \n" << guessed << "\n\nApenas " << tries << " tentativas restantes\n\nL: "<<ans.length()<<"\nR: "<< countR;
         }
         if(tries <= 0){break;}
     }while(win == false);
     if(win){
-        std::cout << "\nVocê ganhou com " << tries << " restantes!";
+        std::cout << "Você ganhou com " << tries << " tentativas restantes!";
     }else{
-        std::cout << "\nBoa sorte na próxima!";
+        std::cout << "Boa sorte na próxima!";
     }
     
     return 0;
